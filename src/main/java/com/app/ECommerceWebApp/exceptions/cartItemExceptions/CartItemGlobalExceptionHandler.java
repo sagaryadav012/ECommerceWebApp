@@ -17,4 +17,14 @@ public class CartItemGlobalExceptionHandler {
     public ResponseEntity<String> productExistException(ProductExistException exception){
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(CartItemNotFoundException.class)
+    public ResponseEntity<String> cartItemNotFoundException(CartItemNotFoundException exception){
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InsufficientProductQuantityException.class)
+    public ResponseEntity<String> insufficientProductQuantityException(InsufficientProductQuantityException exception){
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }

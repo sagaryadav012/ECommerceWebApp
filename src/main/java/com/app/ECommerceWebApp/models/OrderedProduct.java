@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity(name = "cart_items")
+@Entity(name = "ordered_products")
 @Data
-public class CartItem {
+public class OrderedProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -15,5 +15,5 @@ public class CartItem {
     private int quantity;
     @JsonIgnore
     @ManyToOne
-    private Cart cart;
+    private Order order;
 }

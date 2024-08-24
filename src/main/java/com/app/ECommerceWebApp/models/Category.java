@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.Generated;
 
-@Entity
+@Entity(name = "categories")
 @Data
 public class Category {
     @Id

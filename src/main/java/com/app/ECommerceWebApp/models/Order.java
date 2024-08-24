@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "user_orders")
 @Data
@@ -14,7 +15,10 @@ public class Order {
     private Date orderDate;
     private double totalAmount;
     private OrderStatus orderStatus;
-//    private List<>
+
     @ManyToOne
     private User userId;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    List<OrderedProduct> orderedProductList;
 }

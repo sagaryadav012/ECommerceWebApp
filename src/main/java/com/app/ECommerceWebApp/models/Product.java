@@ -3,7 +3,7 @@ package com.app.ECommerceWebApp.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
+@Entity(name = "products")
 @Data
 public class Product {
     @Id

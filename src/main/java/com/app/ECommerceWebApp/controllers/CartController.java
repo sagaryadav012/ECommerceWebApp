@@ -7,6 +7,7 @@ import com.app.ECommerceWebApp.exceptions.cartExceptions.CartNotExistsException;
 import com.app.ECommerceWebApp.models.Cart;
 import com.app.ECommerceWebApp.services.CartItemService;
 import com.app.ECommerceWebApp.services.CartService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,12 @@ import org.springframework.web.bind.annotation.*;
 public class CartController {
     private CartService cartService;
 
-    @GetMapping("/viewCart/{id}")
+    @Autowired
+    public CartController(CartService cartService) {
+        this.cartService = cartService;
+    }
+
+    @GetMapping("/{id}")
     public ResponseEntity<Cart> viewCart(@PathVariable long id){
         try {
             Cart cart = this.cartService.viewCart(id);
@@ -49,7 +55,11 @@ public class CartController {
 
     @PatchMapping("/updateQuantity")
     public ResponseEntity<Cart> updateQuantity(@RequestBody UpdateQuantityDTO updateQuantityDTO){
-        Cart cart = this.cartService.updateQuantity(updateQuantityDTO.getCart_id(), updateQuantityDTO.getProduct_id(), updateQuantityDTO.getQuantity());
-        return new ResponseEntity<>(cart, HttpStatus.CREATED);
+        try {
+            Cart cart = this.cartService.updateQuantity(updateQuantityDTO.getCart_id(), updateQuantityDTO.getProduct_id(), updateQuantityDTO.getQuantity());
+            return new ResponseEntity<>(cart, HttpStatus.CREATED);
+        } catch (CartNotExistsException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

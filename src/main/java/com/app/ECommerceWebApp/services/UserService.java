@@ -10,5 +10,5 @@ public interface UserService {
     User registerUser(String name, String mail, String password) throws UserExistsException;
     void loginUser(String mail, String password) throws UserNotExistsException;
     void logoutUser(long id);
-    User findByMail(String mail);
+    User findByMail(String mail) throws UserNotExistsException;
 }

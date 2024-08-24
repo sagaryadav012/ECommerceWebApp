@@ -26,10 +26,12 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product createProduct(String title, double price, String description, int availableQuantity, String categoryName){
-        ResponseEntity<Category> categoryResponseEntity = categoryController.getCategory(categoryName);
-        Category category = categoryResponseEntity.getBody();
-
-        if(category == null) {
+        Category category = null;
+        try{
+            ResponseEntity<Category> categoryResponseEntity = categoryController.getCategory(categoryName);
+            category = categoryResponseEntity.getBody();
+        }
+        catch (Exception exception){
             CreateCategoryDTO categoryDTO = new CreateCategoryDTO();
             categoryDTO.setName(categoryName);
             ResponseEntity<Category> controllerCategory = categoryController.createCategory(categoryDTO);
@@ -72,7 +74,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public void deleteProduct(long id) throws ProductNotFoundException {
-        Product product = this.productRepo.findById(id).orElseThrow(() -> new ProductNotFoundException("Product Not Found"));
+        Product product = this.productRepo.findById(id).orElseThrow(() -> new ProductNotFoundException("Product Not Found!"));
         productRepo.delete(product);
     }
 }

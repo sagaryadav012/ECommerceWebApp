@@ -46,7 +46,7 @@ public class ProductController {
         return new ResponseEntity<>(allProducts, HttpStatus.OK);
     }
 
-    @PostMapping("/updatePrice")
+    @PatchMapping("/updatePrice")
     public ResponseEntity<Product> updatePrice(@RequestBody UpdateProductPriceDTO productPriceDTO){
         // validate DTO
 
@@ -58,7 +58,7 @@ public class ProductController {
         }
     }
 
-    @PostMapping("/updateQuantity")
+    @PatchMapping("/updateQuantity")
     public ResponseEntity<Product> updateQuantity(@RequestBody UpdateProductQuantityDTO productQuantityDTO){
         // validate DTO
 
@@ -70,7 +70,7 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable long id){
         try {
             this.productService.deleteProduct(id);
@@ -80,8 +80,4 @@ public class ProductController {
         }
     }
 
-
-//    public void validateProductDTO(CreateProductDTO productDTO){
-//
-//    }
 }

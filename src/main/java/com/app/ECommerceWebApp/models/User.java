@@ -14,8 +14,6 @@ public class User {
     private String name;
     private String mail;
     private String password;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Cart cart;
-    @OneToMany(mappedBy = "userId")
-    private List<Order> orderList;
 }

@@ -8,6 +8,7 @@ import com.app.ECommerceWebApp.exceptions.cartExceptions.CartNotExistsException;
 import com.app.ECommerceWebApp.models.Cart;
 import com.app.ECommerceWebApp.models.CartItem;
 import com.app.ECommerceWebApp.repositories.CartRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +19,15 @@ public class CartServiceImpl implements CartService{
     private CartRepo cartRepo;
     private CartItemController cartItemController;
 
+    @Autowired
+    public CartServiceImpl(CartRepo cartRepo, CartItemController cartItemController) {
+        this.cartRepo = cartRepo;
+        this.cartItemController = cartItemController;
+    }
+
     @Override
     public Cart viewCart(long id) throws CartNotExistsException {
-        return this.cartRepo.findById(id).orElseThrow(() -> new CartNotExistsException("Cart Is Empty!"));
+        return this.cartRepo.findById(id).orElseThrow(() -> new CartNotExistsException("No Cart Found!"));
     }
 
     @Override
@@ -54,11 +61,11 @@ public class CartServiceImpl implements CartService{
     }
 
     @Override
-    public Cart updateQuantity(long cart_id, long product_id, int quantity) {
+    public Cart updateQuantity(long cart_id, long product_id, int quantity) throws CartNotExistsException {
         UpdateQuantityDTO updateQuantityDTO = this.getUpdateQuantityDTO(cart_id, product_id, quantity);
-        ResponseEntity<CartItem> cartItemResponseEntity = this.cartItemController.updateQuantity(updateQuantityDTO);
+        this.cartItemController.updateQuantity(updateQuantityDTO);
 
-        return Objects.requireNonNull(cartItemResponseEntity.getBody()).getCart();
+        return this.viewCart(cart_id);
     }
 
     public Cart updateAmount(long cart_id, double amount) throws CartNotExistsException {

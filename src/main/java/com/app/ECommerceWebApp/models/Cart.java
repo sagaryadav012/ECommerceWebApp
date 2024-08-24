@@ -5,7 +5,7 @@ import lombok.Data;
 
 import java.util.List;
 
-@Entity
+@Entity(name = "carts")
 @Data
 public class Cart {
     @Id

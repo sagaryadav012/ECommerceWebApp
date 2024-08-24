@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface CartService {
-    public Cart viewCart(long id) throws CartNotExistsException;
+    Cart viewCart(long id) throws CartNotExistsException;
     Cart addCartItem(long cart_id, long product_id, int quantity) throws CartNotExistsException;
     Cart removeCartItem(long cart_id, long product_id) throws CartNotExistsException;
-    Cart updateQuantity(long cart_id, long product_id, int quantity);
+    Cart updateQuantity(long cart_id, long product_id, int quantity) throws CartNotExistsException;
 }
