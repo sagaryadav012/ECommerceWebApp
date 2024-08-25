@@ -1,4 +1,4 @@
-package com.app.ECommerceWebApp.services;
+package com.app.ECommerceWebApp.services.cartItem;
 
 import com.app.ECommerceWebApp.controllers.CartController;
 import com.app.ECommerceWebApp.controllers.ProductController;
@@ -10,7 +10,6 @@ import com.app.ECommerceWebApp.models.Cart;
 import com.app.ECommerceWebApp.models.CartItem;
 import com.app.ECommerceWebApp.models.Product;
 import com.app.ECommerceWebApp.repositories.CartItemRepo;
-import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -95,7 +94,7 @@ public class CartItemServiceImpl implements CartItemService{
     }
 
     public Cart getCart(long cart_id){
-        ResponseEntity<Cart> cartResponseEntity = this.cartController.viewCart(cart_id);
+        ResponseEntity<Cart> cartResponseEntity = this.cartController.viewCart(cart_id, "");
         return cartResponseEntity.getBody();
     }
 

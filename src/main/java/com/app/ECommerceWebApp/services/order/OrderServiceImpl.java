@@ -1,6 +1,7 @@
-package com.app.ECommerceWebApp.services;
+package com.app.ECommerceWebApp.services.order;
 
 import com.app.ECommerceWebApp.controllers.CartController;
+import com.app.ECommerceWebApp.controllers.UserController;
 import com.app.ECommerceWebApp.exceptions.orderExceptions.OrderNotFoundException;
 import com.app.ECommerceWebApp.models.*;
 import com.app.ECommerceWebApp.repositories.OrderRepo;
@@ -15,12 +16,12 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService{
     private OrderRepo orderRepo;
-    private CartController cartController;
+    private UserController userController;
 
     @Autowired
-    public OrderServiceImpl(OrderRepo orderRepo, CartController cartController) {
+    public OrderServiceImpl(OrderRepo orderRepo, UserController userController) {
         this.orderRepo = orderRepo;
-        this.cartController = cartController;
+        this.userController = userController;
     }
 
     @Override
@@ -30,17 +31,18 @@ public class OrderServiceImpl implements OrderService{
             2. Get cart of user.
             3. Get list of cart items using cart.
          */
-//        User user = new User();
-        ResponseEntity<Cart> cartResponseEntity = cartController.viewCart(1);
-        Cart cart = cartResponseEntity.getBody();
-//        Cart cart = user.getCart();
+        User user = this.userController.getUSer(user_id).getBody();
+
+        assert user != null;
+        Cart cart = user.getCart();
+
         assert cart != null;
         double totalAmount = cart.getTotalAmount();
 
         Order order = new Order();
         order.setOrderDate(new Date());
         order.setOrderStatus(OrderStatus.PLACED);
-//        order.setUserId(user);
+        order.setUserId(user);
         order.setTotalAmount(totalAmount);
 
         List<CartItem> cartItems = cart.getCartItems();

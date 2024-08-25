@@ -1,4 +1,4 @@
-package com.app.ECommerceWebApp.services;
+package com.app.ECommerceWebApp.services.cart;
 
 import com.app.ECommerceWebApp.controllers.CartItemController;
 import com.app.ECommerceWebApp.dtos.cartItemDtos.AddCartItemDTO;
@@ -11,8 +11,6 @@ import com.app.ECommerceWebApp.repositories.CartRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.Objects;
 
 @Service
 public class CartServiceImpl implements CartService{

@@ -1,4 +1,4 @@
-package com.app.ECommerceWebApp.services;
+package com.app.ECommerceWebApp.services.product;
 
 import com.app.ECommerceWebApp.exceptions.productExceptions.ProductNotFoundException;
 import com.app.ECommerceWebApp.models.Product;

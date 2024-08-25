@@ -5,7 +5,7 @@ import com.app.ECommerceWebApp.dtos.productDtos.UpdateProductPriceDTO;
 import com.app.ECommerceWebApp.dtos.productDtos.UpdateProductQuantityDTO;
 import com.app.ECommerceWebApp.exceptions.productExceptions.ProductNotFoundException;
 import com.app.ECommerceWebApp.models.Product;
-import com.app.ECommerceWebApp.services.ProductService;
+import com.app.ECommerceWebApp.services.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -3,7 +3,7 @@ package com.app.ECommerceWebApp.controllers;
 import com.app.ECommerceWebApp.dtos.categoryDtos.CreateCategoryDTO;
 import com.app.ECommerceWebApp.exceptions.categoryExceptions.CategoryNotFoundException;
 import com.app.ECommerceWebApp.models.Category;
-import com.app.ECommerceWebApp.services.CategoryService;
+import com.app.ECommerceWebApp.services.category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

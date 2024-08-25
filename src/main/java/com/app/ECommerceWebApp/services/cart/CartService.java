@@ -1,4 +1,4 @@
-package com.app.ECommerceWebApp.services;
+package com.app.ECommerceWebApp.services.cart;
 
 import com.app.ECommerceWebApp.exceptions.cartExceptions.CartNotExistsException;
 import com.app.ECommerceWebApp.models.Cart;

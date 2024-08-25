@@ -1,4 +1,4 @@
-package com.app.ECommerceWebApp.services;
+package com.app.ECommerceWebApp.services.category;
 
 import com.app.ECommerceWebApp.exceptions.categoryExceptions.CategoryNotFoundException;
 import com.app.ECommerceWebApp.models.Category;

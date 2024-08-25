@@ -1,4 +1,4 @@
-package com.app.ECommerceWebApp.services;
+package com.app.ECommerceWebApp.services.cartItem;
 
 import com.app.ECommerceWebApp.exceptions.cartItemExceptions.CartItemNotFoundException;
 import com.app.ECommerceWebApp.exceptions.cartItemExceptions.InsufficientProductQuantityException;

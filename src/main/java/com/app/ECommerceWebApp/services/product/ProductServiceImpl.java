@@ -1,4 +1,4 @@
-package com.app.ECommerceWebApp.services;
+package com.app.ECommerceWebApp.services.product;
 
 import com.app.ECommerceWebApp.controllers.CategoryController;
 import com.app.ECommerceWebApp.dtos.categoryDtos.CreateCategoryDTO;
