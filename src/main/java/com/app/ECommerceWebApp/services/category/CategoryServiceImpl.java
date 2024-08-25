@@ -19,6 +19,10 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public Category createCategory(String name) {
+        /*
+            1. Check category exists in db table first, If exists return it.
+            2. Else create new category.
+         */
         Category category = null;
         try {
             category = this.getCategoryByName(name);
@@ -34,11 +38,6 @@ public class CategoryServiceImpl implements CategoryService{
     public Category getCategoryByName(String name) throws CategoryNotFoundException {
         return categoryRepo.findCategoryByName(name).orElseThrow(() -> new CategoryNotFoundException("Category Not Found!"));
     }
-
-    //    @Override
-//    public Category getCategoryByName(String name) throws CategoryNotFoundException{
-//        return categoryRepo.findCategoryByName(name).orElseThrow(() -> new CategoryNotFoundException("Category Not Found!"));
-//    }
 
 
     @Override

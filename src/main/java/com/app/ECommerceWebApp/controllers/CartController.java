@@ -4,7 +4,6 @@ import com.app.ECommerceWebApp.dtos.cartItemDtos.AddCartItemDTO;
 import com.app.ECommerceWebApp.dtos.cartItemDtos.RemoveCartItemDTO;
 import com.app.ECommerceWebApp.dtos.cartItemDtos.UpdateQuantityDTO;
 import com.app.ECommerceWebApp.exceptions.cartExceptions.CartNotExistsException;
-import com.app.ECommerceWebApp.exceptions.userExceptions.InvalidTokenException;
 import com.app.ECommerceWebApp.models.Cart;
 import com.app.ECommerceWebApp.services.cart.CartService;
 import com.app.ECommerceWebApp.utils.AuthUtils;

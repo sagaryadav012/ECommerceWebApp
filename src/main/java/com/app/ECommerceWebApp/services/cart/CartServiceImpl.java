@@ -61,7 +61,7 @@ public class CartServiceImpl implements CartService{
     @Override
     public Cart updateQuantity(long cart_id, long product_id, int quantity) throws CartNotExistsException {
         UpdateQuantityDTO updateQuantityDTO = this.getUpdateQuantityDTO(cart_id, product_id, quantity);
-        this.cartItemController.updateQuantity(updateQuantityDTO);
+        CartItem cartItem = this.cartItemController.updateQuantity(updateQuantityDTO).getBody();
 
         return this.viewCart(cart_id);
     }

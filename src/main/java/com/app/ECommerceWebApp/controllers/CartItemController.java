@@ -44,11 +44,11 @@ public class CartItemController {
     }
 
     @PatchMapping("/updateQuantity")
-    public ResponseEntity<Void> updateQuantity(@RequestBody UpdateQuantityDTO quantityDTO){
+    public ResponseEntity<CartItem> updateQuantity(@RequestBody UpdateQuantityDTO quantityDTO){
         try {
-            this.cartItemService.updateQuantity(quantityDTO.getCart_id(), quantityDTO.getProduct_id(), quantityDTO.getQuantity());
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (ProductNotExistException e) {
+            CartItem cartItem = this.cartItemService.updateQuantity(quantityDTO.getCart_id(), quantityDTO.getProduct_id(), quantityDTO.getQuantity());
+            return new ResponseEntity<>(cartItem, HttpStatus.CREATED);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

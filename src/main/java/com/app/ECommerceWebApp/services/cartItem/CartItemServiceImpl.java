@@ -61,25 +61,20 @@ public class CartItemServiceImpl implements CartItemService{
             1. check product exists in cart, If not throw exception
             2. else remove item from cart.
          */
-
-//        Cart cart = getCart(cart_id);
-//        Product product = getProduct(product_id);
-//        if(!IsProductExists(cart, product)){
-//            throw new ProductNotExistException("Product Not Found In Cart!");
-//        }
         CartItem cartItem = getCartItem(cart_id, product_id);
         this.cartItemRepo.delete(cartItem);
         return cartItem;
     }
 
     @Override
-    public void updateQuantity(long cart_id, long product_id, int quantity) throws ProductNotExistException {
+    public CartItem updateQuantity(long cart_id, long product_id, int quantity) throws ProductNotExistException, CartItemNotFoundException {
         Cart cart = getCart(cart_id);
         Product product = getProduct(product_id);
         if(!IsProductExists(cart, product)){
             throw new ProductNotExistException("Product Not Found In Cart!");
         }
         this.cartItemRepo.updateQuantity(quantity, cart, product);
+        return this.getCartItem(cart_id, product_id);
     }
 
     public CartItem getCartItem(long cart_id, long product_id) throws CartItemNotFoundException {

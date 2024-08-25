@@ -26,6 +26,10 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product createProduct(String title, double price, String description, int availableQuantity, String categoryName){
+        /*
+            1. Check category exists in db, If not create category first.
+            2. Once get category, then create product.
+         */
         Category category = null;
         try{
             ResponseEntity<Category> categoryResponseEntity = categoryController.getCategory(categoryName);
@@ -50,6 +54,10 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product updatePrice(long id, double price) throws ProductNotFoundException {
+        /*
+            1. Get product using id.
+            2. Update price of product and save it.
+         */
         Product product = this.getProductById(id);
         product.setPrice(price);
         return productRepo.save(product);

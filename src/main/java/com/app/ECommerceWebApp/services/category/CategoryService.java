@@ -9,7 +9,6 @@ import java.util.List;
 @Service
 public interface CategoryService {
     public Category createCategory(String name);
-//    public Category getCategoryByName(String name) throws CategoryNotFoundException;
     public Category getCategoryByName(String name) throws CategoryNotFoundException;
     public List<Category> getAllCategories();
 }

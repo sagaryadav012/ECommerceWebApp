@@ -32,6 +32,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User registerUser(String name, String mail, String password) throws UserExistsException {
+        /*
+            1. Check mail exists in db, if exists throw exception.
+            2. Else create new user.
+         */
         try {
             User user = this.findByMail(mail);
             throw new UserExistsException("Mail Already Registered, Please do login");
@@ -48,6 +52,12 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Token loginUser(String mail, String password) throws UserNotExistsException, IncorrectPasswordException {
+        /*
+            1. Get user using mail, If not found throw exception.
+            2. Get encoded password from user check it with raw password that we get from front end.
+            3. If password not matches, throw exception.
+            4. Else create token, set expire time 5 days later and return it.
+         */
         User user = this.findByMail(mail);
         String encodedPassword = user.getPassword();
         boolean matches = this.bCryptPasswordEncoder.matches(password, encodedPassword);

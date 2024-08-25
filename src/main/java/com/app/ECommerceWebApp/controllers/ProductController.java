@@ -48,7 +48,6 @@ public class ProductController {
 
     @PatchMapping("/updatePrice")
     public ResponseEntity<Product> updatePrice(@RequestBody UpdateProductPriceDTO productPriceDTO){
-        // validate DTO
 
         try {
             Product product = productService.updatePrice(productPriceDTO.getId(), productPriceDTO.getPrice());
@@ -60,8 +59,6 @@ public class ProductController {
 
     @PatchMapping("/updateQuantity")
     public ResponseEntity<Product> updateQuantity(@RequestBody UpdateProductQuantityDTO productQuantityDTO){
-        // validate DTO
-
         try {
             Product product = productService.updateAvailableQuantity(productQuantityDTO.getId(), productQuantityDTO.getQuantity());
             return new ResponseEntity<>(product, HttpStatus.CREATED);

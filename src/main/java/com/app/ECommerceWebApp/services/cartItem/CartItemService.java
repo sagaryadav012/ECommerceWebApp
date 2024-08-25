@@ -11,5 +11,5 @@ import org.springframework.stereotype.Service;
 public interface CartItemService {
     CartItem addCartItem(long cart_id, long product_id, int quantity) throws ProductExistException, InsufficientProductQuantityException;
     CartItem removerCartItem(long cart_id, long product_id) throws CartItemNotFoundException;
-    void updateQuantity(long cart_id, long product_id, int quantity) throws ProductNotExistException;
+    CartItem updateQuantity(long cart_id, long product_id, int quantity) throws ProductNotExistException, CartItemNotFoundException;
 }
